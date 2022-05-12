@@ -4,6 +4,6 @@ class RopeRoutesController < ApplicationController
   end
 
   def show
-
-  end  
+    @rope_route = RopeRoute.find(params[:id])
+  end
 end

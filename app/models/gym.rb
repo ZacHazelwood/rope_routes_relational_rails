@@ -1,3 +1,3 @@
 class Gym < ApplicationRecord
-
-end  
+  has_many :rope_routes
+end
