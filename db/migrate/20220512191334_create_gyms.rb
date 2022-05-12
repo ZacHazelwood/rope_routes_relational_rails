@@ -6,7 +6,7 @@ class CreateGyms < ActiveRecord::Migration[5.2]
       t.boolean :has_rope
       t.integer :square_feet
 
-      t.timestamp
+      t.timestamps
     end
   end
 end
