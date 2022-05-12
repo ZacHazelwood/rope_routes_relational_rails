@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_12_191334) do
+ActiveRecord::Schema.define(version: 2022_05_12_202515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2022_05_12_191334) do
     t.string "location"
     t.boolean "has_rope"
     t.integer "square_feet"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rope_routes", force: :cascade do |t|
+    t.string "grade"
+    t.string "color"
+    t.boolean "top_rope"
+    t.boolean "lead"
+    t.integer "height"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
