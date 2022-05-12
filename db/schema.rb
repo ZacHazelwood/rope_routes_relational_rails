@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2022_05_12_191334) do
     t.string "location"
     t.boolean "has_rope"
     t.integer "square_feet"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
