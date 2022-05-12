@@ -8,7 +8,8 @@ RSpec.describe 'rope_routes#index', type: :feature do
   # When I visit '/child_table_name'
   # Then I see each Child in the system including the Child's attributes:
   it "displays rope routes and their attributes" do
-    rope_1 = RopeRoute.create!(grade: '5.9', color: 'blue', top_rope: true, lead: false, height: 33)
+    gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+    rope_1 = gym_1.rope_routes.create!(grade: '5.9', color: 'green', top_rope: true, lead: false, height: 33)
 
     visit '/rope_routes'
 
