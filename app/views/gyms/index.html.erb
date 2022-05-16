@@ -1,4 +1,4 @@
 <h1>Gyms</h1>
 <% @gyms.each do |gym| %>
-  <p><%= gym.name %></p>
+  <p><strong><%= gym.name %></strong> <%= gym.created_at %></p>
 <% end %>
