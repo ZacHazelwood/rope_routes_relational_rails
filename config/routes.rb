@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
   get '/rope_routes', to: 'rope_routes#index'
   get '/rope_routes/:id', to: 'rope_routes#show'
-  get '/gym/:gym_id/rope_routes', to: 'gym_rope_routes#index'
+  get '/gyms/:gym_id/rope_routes', to: 'gym_rope_routes#index'
 end

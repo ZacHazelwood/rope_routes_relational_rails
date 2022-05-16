@@ -15,7 +15,7 @@ RSpec.describe "Parent-Child index", type: :feature do
     rope_3 = gym_2.rope_routes.create!(grade: '5.10a', color: 'White', top_rope: true, lead: true, height: 33)
     rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
 
-    visit "/gym/#{gym_1.id}/rope_routes"
+    visit "/gyms/#{gym_1.id}/rope_routes"
     # save_and_open_page
 
     expect(page).to have_content(rope_1.id)

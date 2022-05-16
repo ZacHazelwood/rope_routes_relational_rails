@@ -43,8 +43,7 @@ RSpec.describe 'gyms#show', type: :feature do
   end
 
   describe "User Story 10" do
-
-#     User Story 10, Parent Child Index Link
+#   User Story 10, Parent Child Index Link
 #
 #   As a visitor
 #   When I visit a parent show page ('/parents/:id')
@@ -60,6 +59,7 @@ RSpec.describe 'gyms#show', type: :feature do
       rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
 
       visit "/gyms/#{gym_1.id}"
+      # save_and_open_page
 
       click_link "Rope Routes at #{gym_1.name}"
 

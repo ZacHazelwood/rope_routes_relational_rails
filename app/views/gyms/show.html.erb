@@ -1,2 +1,9 @@
 <h2><%= @gym.name %></h2>
+<h3>Location: <%= @gym.location %></h3>
+<p>ID: <%= @gym.id %></p>
+<p>Has Rope?: <%= @gym.has_rope %></p>
 <p>Count of Rope Routes: <%= @gym.rope_routes.count %></p>
+<p>Square Feet: <%= @gym.square_feet %></p>
+<p>Created at: <%= @gym.created_at %></p>
+<p>Updated at: <%= @gym.updated_at %></p>
+<p><%= link_to "Rope Routes at #{@gym.name}", "/gyms/#{@gym.id}/rope_routes" %></p>
