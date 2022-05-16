@@ -16,4 +16,24 @@ RSpec.describe "gyms#index", type: :feature do
     expect(page).to have_content(gym_1.name)
     expect(page).to have_content(gym_2.name)
   end
+
+  describe "User Story 6" do
+#     User Story 6, Parent Index sorted by Most Recently Created
+#
+#     As a visitor
+#     When I visit the parent index,
+#     I see that records are ordered by most recently created first
+#     And next to each of the records I see when it was created
+    it "displays gyms in a sorted list by creation" do
+      gym_1 = Gym.create(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      gym_2 = Gym.create(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
+      visit "/gyms"
+
+      expect ("Movement Englewood").to appear_before("Movement Boulder")
+      expect(page).to have_content(gym_1.name)
+      expect(page).to have_content(gym_2.name)
+      expect(page).to have_content(gym_1.created_at)
+      expect(page).to have_content(gym_2.created_at)
+    end
+  end
 end
