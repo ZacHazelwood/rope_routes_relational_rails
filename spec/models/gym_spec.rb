@@ -14,4 +14,13 @@ RSpec.describe Gym, type: :model do
     xit { should allow_value(true).for(:has_rope) }
     xit { should allow_value(false).for(:has_rope) }
   end
+
+  describe "class methods" do
+
+    it "sorts by created time" do
+      gym_1 = Gym.create(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      gym_2 = Gym.create(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
+
+      expect(Gym.order_by_creation).to eq([gym_1, gym_2])
+    end
 end
