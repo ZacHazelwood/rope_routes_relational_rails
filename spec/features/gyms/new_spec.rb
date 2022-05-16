@@ -15,7 +15,8 @@ RSpec.describe "New Gym Creation", type: :feature do
     # a new parent record is created,
     # and I am redirected to the Parent Index page where I see the new Parent displayed.
     it "displays a link to create a new Gym" do
-      gym_1 = gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+
       visit "/gyms"
 
       expect(page).to have_content("New Gym")
@@ -26,17 +27,19 @@ RSpec.describe "New Gym Creation", type: :feature do
     end
 
     it "can create a Gym using a form" do
-        visit "/gyms/new"
+      visit "/gyms/new"
 
-        fill_in(:name, with: "Movement RiNo")
-        fill_in(:location, with: "Denver, CO")
-        fill_in(:has_rope, with: false)
+      fill_in(:name, with: "Movement RiNo")
+      fill_in(:location, with: "Denver, CO")
+      fill_in(:has_rope, with: false)
+      fill_in(:square_feet, with: 40000)
 
-        click_button("Create Gym")
+      click_button("Create Gym")
+      # save_and_open_page
 
-        expect(current_path).to eq("/gym")
-        expect(page).to have_content("Movement RiNo")
-        expect(page).to_not have_content("The Spot")
+      expect(current_path).to eq("/gyms")
+      expect(page).to have_content("Movement RiNo")
+      expect(page).to_not have_content("The Spot")
     end
   end
 end

@@ -2,3 +2,4 @@
 <% @gyms.each do |gym| %>
   <p><strong><%= gym.name %></strong> <%= gym.created_at %></p>
 <% end %>
+<%= link_to "New Gym", "/gyms/new" %>

@@ -1,0 +1,11 @@
+<%= form_with url: '/gyms', method: :post, local: true do |form| %>
+  <%= form.label :name %><br>
+  <%= form.text_field :name %><br>
+  <%= form.label :location %><br>
+  <%= form.text_field :location %><br>
+  <%= form.label "Has Rope" %><br>
+  <%= form.text_field :has_rope %><br>
+  <%= form.label "Square Feet" %><br>
+  <%= form.text_field :square_feet %><br>
+  <%= form.submit "Create Gym" %>
+<% end %>
