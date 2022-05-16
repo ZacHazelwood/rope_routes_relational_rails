@@ -50,7 +50,7 @@ RSpec.describe "Parent-Child index", type: :feature do
       rope_3 = gym_2.rope_routes.create!(grade: '5.10a', color: 'White', top_rope: true, lead: true, height: 33)
       rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
 
-      visit "/gyms/#{gym_1.id}/rope_routes"
+      visit "/rope_routes"
       click_link "All Rope Routes"
 
       expect(current_path).to eq("/rope_routes")
@@ -73,7 +73,7 @@ RSpec.describe "Parent-Child index", type: :feature do
       rope_3 = gym_2.rope_routes.create!(grade: '5.10a', color: 'White', top_rope: true, lead: true, height: 33)
       rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
 
-      visit "/gyms/#{gym_1}/rope_routes"
+      visit "/gyms"
       click_link "All Gyms"
 
       expect(current_path).to eq("/gyms")
