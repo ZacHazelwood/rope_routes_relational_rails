@@ -18,9 +18,10 @@ RSpec.describe Gym, type: :model do
   describe "class methods" do
 
     it "sorts by created time" do
-      gym_1 = Gym.create(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
-      gym_2 = Gym.create(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      gym_2 = Gym.create!(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
 
-      expect(Gym.order_by_creation).to eq([gym_1, gym_2])
+      expect(Gym.order_by_creation).to eq([gym_2, gym_1])
     end
+  end
 end

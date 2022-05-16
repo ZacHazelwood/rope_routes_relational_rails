@@ -25,11 +25,13 @@ RSpec.describe "gyms#index", type: :feature do
 #     I see that records are ordered by most recently created first
 #     And next to each of the records I see when it was created
     it "displays gyms in a sorted list by creation" do
-      gym_1 = Gym.create(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
-      gym_2 = Gym.create(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
+      Gym.destroy_all
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      gym_2 = Gym.create!(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
       visit "/gyms"
 
-      expect ("Movement Englewood").to appear_before("Movement Boulder")
+      # save_and_open_page
+      expect("Movement Boulder").to appear_before("Movement Englewood")
       expect(page).to have_content(gym_1.name)
       expect(page).to have_content(gym_2.name)
       expect(page).to have_content(gym_1.created_at)
