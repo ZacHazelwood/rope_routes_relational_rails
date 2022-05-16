@@ -15,7 +15,7 @@ RSpec.describe "Parent-Child index", type: :feature do
     rope_3 = gym_2.rope_routes.create!(grade: '5.10a', color: 'White', top_rope: true, lead: true, height: 33)
     rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
 
-    visit "/gym/#{gym_1.id}/rope_routes"
+    visit "/gyms/#{gym_1.id}/rope_routes"
     # save_and_open_page
 
     expect(page).to have_content(rope_1.id)
@@ -32,5 +32,51 @@ RSpec.describe "Parent-Child index", type: :feature do
 
     expect(page).to_not have_content(rope_3.grade)
     expect(page).to_not have_content(rope_4.grade)
+  end
+
+  describe "User Story 8, Child Index Link" do
+    # User Story 8, Child Index Link
+    #
+    # As a visitor
+    # When I visit any page on the site
+    # Then I see a link at the top of the page that takes me to the Child Index
+    it "has a link to the Rope Routes index" do
+      Gym.destroy_all
+      RopeRoute.destroy_all
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      gym_2 = Gym.create!(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
+      rope_1 = gym_1.rope_routes.create!(grade: '5.9', color: 'Green', top_rope: true, lead: false, height: 33)
+      rope_2 = gym_1.rope_routes.create!(grade: '5.11', color: 'Blue', top_rope: false, lead: true, height: 45)
+      rope_3 = gym_2.rope_routes.create!(grade: '5.10a', color: 'White', top_rope: true, lead: true, height: 33)
+      rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
+
+      visit "/rope_routes"
+      click_link "All Rope Routes"
+
+      expect(current_path).to eq("/rope_routes")
+    end
+  end
+
+  describe "User Story 9, Parent Index Link" do
+    # User Story 9, Parent Index Link
+    #
+    # As a visitor
+    # When I visit any page on the site
+    # Then I see a link at the top of the page that takes me to the Parent Index
+    it "has a link to the Gyms index" do
+      Gym.destroy_all
+      RopeRoute.destroy_all
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      gym_2 = Gym.create!(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
+      rope_1 = gym_1.rope_routes.create!(grade: '5.9', color: 'Green', top_rope: true, lead: false, height: 33)
+      rope_2 = gym_1.rope_routes.create!(grade: '5.11', color: 'Blue', top_rope: false, lead: true, height: 45)
+      rope_3 = gym_2.rope_routes.create!(grade: '5.10a', color: 'White', top_rope: true, lead: true, height: 33)
+      rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
+
+      visit "/gyms"
+      click_link "All Gyms"
+
+      expect(current_path).to eq("/gyms")
+    end
   end
 end
