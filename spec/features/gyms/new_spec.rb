@@ -14,6 +14,17 @@ RSpec.describe "New Gym Creation", type: :feature do
     # Then a `POST` request is sent to the '/parents' route,
     # a new parent record is created,
     # and I am redirected to the Parent Index page where I see the new Parent displayed.
+    it "displays a link to create a new Gym" do
+      gym_1 = gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      visit "/gyms"
+
+      expect(page).to have_content("New Gym")
+
+      click_link("New Gym")
+
+      expect(current_path).to eq("/gyms/new")
+    end
+
     it "can create a Gym using a form" do
         visit "/gyms/new"
 
