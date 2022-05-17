@@ -65,4 +65,36 @@ RSpec.describe 'rope_routes#index', type: :feature do
       end
     end
   end
+
+  describe "User Story 23, Child delete from child index" do
+    # User Story 23, Child Delete From Childs Index Page
+    #
+    # As a visitor
+    # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+    # Next to every child, I see a link to delete that child
+    # When I click the link
+    # I should be taken to the `child_table_name` index page where I no longer see that child
+    it "can delete a child via a link" do
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      gym_2 = Gym.create!(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
+      rope_1 = gym_1.rope_routes.create!(grade: '5.9', color: 'Green', top_rope: true, lead: false, height: 33)
+      rope_2 = gym_1.rope_routes.create!(grade: '5.11', color: 'Blue', top_rope: false, lead: true, height: 45)
+      rope_3 = gym_2.rope_routes.create!(grade: '5.10a', color: 'White', top_rope: true, lead: true, height: 33)
+      rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
+
+      visit "/rope_routes"
+
+      expect(page).to have_content("5.9")
+      expect(page).to have_content("5.11")
+
+      within("#rope_route-#{rope_1.id}" do
+
+        click_link "Delete Rope Route"
+      end
+
+      expect(current_path).to eq("/rope_routes")
+      expect(page).to_not have_content("5.9")
+      expect(page).to_not have_content("5.11")
+    end
+  end
 end
