@@ -1,6 +1,6 @@
 <h1>Rope Routes at <%= @gym.name %> in <%= @gym.location %></h1>
 <p><%= link_to "Sort Rope Routes by Color", "/gyms/#{@gym.id}/rope_routes/?sort=Alphabetical" %></p>
-  <% @rope_routes.each do |rope_route| %>
+  <% @gym.rope_route_order(params[:sort]).each do |rope_route| %>
     <div id="rope_route-<%= rope_route.id %>" >
       <h3>Grade: <%= rope_route.grade %>, <%= rope_route.color %></h3>
       <p>Route ID: <%= rope_route.id %> &nbsp &nbsp <%= link_to "Update Rope Route", "/rope_routes/#{rope_route.id}/edit" %></p>
@@ -10,6 +10,6 @@
       <p>Created: <%= rope_route.created_at %></p>
       <p>Updated: <%= rope_route.updated_at %></p>
       <p>Gym ID: <%= rope_route.gym_id %></p>
-    </div>  
+    </div>
   <% end %>
   <%= link_to "Add Rope Route", "/gyms/#{@gym.id}/rope_routes/new" %>
