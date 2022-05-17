@@ -72,4 +72,33 @@ RSpec.describe "gyms#index", type: :feature do
       end
     end
   end
+
+  describe "User Story 22, Parent Delete from Parent Index" do
+    # User Story 22, Parent Delete From Parent Index Page
+    #
+    # As a visitor
+    # When I visit the parent index page
+    # Next to every parent, I see a link to delete that parent
+    # When I click the link
+    # I am returned to the Parent Index Page where I no longer see that parent
+    it "can delete a Gym and its rope routes" do
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      gym_2 = Gym.create!(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
+      rope_1 = gym_1.rope_routes.create!(grade: '5.9', color: 'Green', top_rope: true, lead: false, height: 33)
+      rope_2 = gym_1.rope_routes.create!(grade: '5.11', color: 'Blue', top_rope: false, lead: true, height: 45)
+      rope_3 = gym_2.rope_routes.create!(grade: '5.10a', color: 'White', top_rope: true, lead: true, height: 33)
+      rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
+
+      visit "/gyms"
+
+      expect(page).to have_content(gym_1.grade)
+
+      within("#gym-#{gym.id}") do
+        click_link "Delete Gym"
+      end
+
+      expect(current_path).to eq("/gyms")
+      expect(page).to_not have_content(gym_1.grade)    
+    end
+  end
 end
