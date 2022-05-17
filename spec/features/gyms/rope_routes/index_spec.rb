@@ -153,7 +153,7 @@ RSpec.describe "Parent-Child index", type: :feature do
       fill_in(:search_number, with: 40)
       click_button("Submit Search")
 
-      expect(current_path).to eq("/gyms/#{gym_1.id}/rope_routes")
+      expect(current_path).to eq("/gyms/#{gym_1.id}/rope_routes/")
       expect(page).to_not have_content("5.9")
       expect(page).to have_content("5.11")
     end
