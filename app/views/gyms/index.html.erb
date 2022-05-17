@@ -5,6 +5,7 @@
       <strong>ID: <%= gym.id %>, <%= gym.name %></strong>
       <%= gym.created_at %>
       <%= link_to "Update Gym", "/gyms/#{gym.id}/edit" %>
+      <%= link_to "Delete Gym", "/gyms/#{gym.id}", method: :delete %>
     </p>
   </div>
 <% end %>

@@ -91,14 +91,14 @@ RSpec.describe "gyms#index", type: :feature do
 
       visit "/gyms"
 
-      expect(page).to have_content(gym_1.grade)
+      expect(page).to have_content(gym_1.name)
 
-      within("#gym-#{gym.id}") do
+      within("#gym-#{gym_1.id}") do
         click_link "Delete Gym"
       end
 
       expect(current_path).to eq("/gyms")
-      expect(page).to_not have_content(gym_1.grade)    
+      expect(page).to_not have_content(gym_1.name)
     end
   end
 end
