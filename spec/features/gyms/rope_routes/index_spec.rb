@@ -149,4 +149,29 @@ RSpec.describe "Parent-Child index", type: :feature do
       expect(rope_2.color).to appear_before(rope_1.color)
     end
   end
+
+  describe "User Story 18, Child Update from Child Index page" do
+    # User Story 18, Child Update From Childs Index Page
+    #
+    # As a visitor
+    # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+    # Next to every child, I see a link to edit that child's info
+    # When I click the link
+    # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
+    it "has a link to edit a rope route's information" do
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      rope_1 = gym_1.rope_routes.create!(grade: '5.9', color: 'Green', top_rope: true, lead: false, height: 33)
+      rope_2 = gym_1.rope_routes.create!(grade: '5.11', color: 'Blue', top_rope: false, lead: true, height: 45)
+
+      visit "/gyms/#{gym_1.id}/rope_routes"
+
+      within "#rope_route-#{rope_1.id}" do
+        expect(page).to have_link("Update Rope Route")
+
+        click_link "Update Rope Route"
+
+        expect(current_path).to eq("/rope_routes/#{rope_1.id}/edit")
+      end
+    end
+  end
 end

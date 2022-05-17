@@ -56,7 +56,7 @@ RSpec.describe 'rope_routes#index', type: :feature do
 
       visit "/rope_routes"
 
-      within "#rope_routes-#{rope_1.id}" do
+      within "#rope_route-#{rope_1.id}" do
         expect(page).to have_link("Update Rope Route")
 
         click_link "Update Rope Route"
