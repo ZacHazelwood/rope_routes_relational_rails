@@ -88,7 +88,6 @@ RSpec.describe 'gyms#show', type: :feature do
       visit "/rope_routes"
 
       expect(page).to have_content("5.9")
-      expect(page).to have_content("5.11")
       expect(page).to have_content("5.8")
 
       visit "/gyms"

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/gyms/:id', to: 'gyms#show'
 
   patch '/gyms/:id', to: 'gyms#update'
+  delete '/gyms/:id', to: 'gyms#destroy'
   get '/gyms/:id/edit', to: 'gyms#edit'
 
   get '/gyms/:id/rope_routes', to: 'gym_rope_routes#index'

@@ -29,6 +29,13 @@ class GymsController < ApplicationController
     redirect_to "/gyms/#{params[:id]}"
   end
 
+  def destroy
+    gym = Gym.find(params[:id])
+    gym.rope_routes.destroy_all
+    gym.destroy
+    redirect_to "/gyms"
+  end
+
   private
     def gym_params
       params.permit(:name, :location, :has_rope, :square_feet)
