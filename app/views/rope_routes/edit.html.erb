@@ -1,0 +1,14 @@
+<%= form_with url: "/rope_routes/#{@rope_route.id}", method: :patch, local: true do |form| %>
+  <p>Update Rope Route #: <%= @rope_route.id %></p>
+  <%= form.label "Update Grade" %><br>
+  <%= form.text_field :grade %><br>
+  <%= form.label "Update Color" %><br>
+  <%= form.text_field :color %><br>
+  <%= form.label "Update Top Rope" %><br>
+  <%= form.select :top_rope, [true, false] %><br>
+  <%= form.label "Update Lead" %><br>
+  <%= form.select :lead, [true, false] %><br>
+  <%= form.label "Update Height" %><br>
+  <%= form.text_field :height %><br>
+  <%= form.submit "Update Rope Route" %>
+<% end %>

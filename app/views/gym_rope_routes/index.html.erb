@@ -1,0 +1,23 @@
+<h1>Rope Routes at <%= @gym.name %> in <%= @gym.location %></h1>
+<p><%= link_to "Sort Rope Routes by Color", "/gyms/#{@gym.id}/rope_routes/?sort=Alphabetical" %></p>
+
+  <%= form_with url: "/gyms/#{@gym.id}/rope_routes/", method: :get, local: true do |form| %>
+    <%= form.hidden_field :sort, value: "Filter" %>
+    <p><%= form.label "Return Rope Routes with a height greater than" %>
+      <%= form.text_field :search_number %> feet
+      <%= form.submit "Submit Search" %></p>
+  <% end %>
+  <% @gym.rope_route_order(params[:sort], params[:search_number]).each do |rope_route| %>
+    <div id="rope_route-<%= rope_route.id %>" >
+      <h3>Grade: <%= rope_route.grade %>, <%= rope_route.color %></h3>
+      <p>Route ID: <%= rope_route.id %> &nbsp &nbsp <%= link_to "Update Rope Route", "/rope_routes/#{rope_route.id}/edit" %></p>
+      <p>Top Rope: <%= rope_route.top_rope %></p>
+      <p>Lead: <%= rope_route.lead %></p>
+      <p>Height (in feet): <%= rope_route.height %></p>
+      <p>Created: <%= rope_route.created_at %></p>
+      <p>Updated: <%= rope_route.updated_at %></p>
+      <p>Gym ID: <%= rope_route.gym_id %></p>
+    </div>
+  <% end %>
+
+<%= link_to "Add Rope Route", "/gyms/#{@gym.id}/rope_routes/new" %>

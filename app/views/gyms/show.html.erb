@@ -1,0 +1,11 @@
+<h2><%= @gym.name %></h2>
+<h3>Location: <%= @gym.location %></h3>
+<p>ID: <%= @gym.id %></p>
+<p>Has Rope?: <%= @gym.has_rope %></p>
+<p>Count of Rope Routes: <%= @gym.count_routes %></p> # Refactor to model method
+<p>Square Feet: <%= @gym.square_feet %></p>
+<p>Created at: <%= @gym.created_at %></p>
+<p>Updated at: <%= @gym.updated_at %></p>
+<p><%= link_to "Rope Routes at #{@gym.name}", "/gyms/#{@gym.id}/rope_routes" %></p>
+<p><%= link_to "Update Gym", "/gyms/#{@gym.id}/edit" %></p>
+<p><%= link_to "Delete Gym", "/gyms/#{@gym.id}", method: :delete %></p>

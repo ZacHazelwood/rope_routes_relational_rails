@@ -1,0 +1,12 @@
+<h1>Gyms</h1>
+<% @gyms.each do |gym| %>
+  <div id="gym-<%= gym.id %>" >
+    <p>
+      <strong>ID: <%= gym.id %>, <%= gym.name %></strong>
+      <%= gym.created_at %>
+      <%= link_to "Update Gym", "/gyms/#{gym.id}/edit" %>
+      <%= link_to "Delete Gym", "/gyms/#{gym.id}", method: :delete %>
+    </p>
+  </div>
+<% end %>
+<%= link_to "New Gym", "/gyms/new" %>
