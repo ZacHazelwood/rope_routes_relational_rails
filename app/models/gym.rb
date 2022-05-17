@@ -7,4 +7,8 @@ class Gym < ApplicationRecord
   def self.order_by_creation
     order(created_at: :desc)
   end
+
+  def count_routes
+    rope_routes.count
+  end
 end

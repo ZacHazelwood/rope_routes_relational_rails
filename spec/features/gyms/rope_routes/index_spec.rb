@@ -79,4 +79,99 @@ RSpec.describe "Parent-Child index", type: :feature do
       expect(current_path).to eq("/gyms")
     end
   end
+
+  describe "User Story 13, Parent Child Creation" do
+    # User Story 13, Parent Child Creation
+    #
+    # As a visitor
+    # When I visit a Parent Childs Index page
+    # Then I see a link to add a new adoptable child for that parent "Create Child"
+    # When I click the link
+    # I am taken to '/parents/:parent_id/child_table_name/new' where I see a form to add a new adoptable child
+    # When I fill in the form with the child's attributes:
+    # And I click the button "Create Child"
+    # Then a `POST` request is sent to '/parents/:parent_id/child_table_name',
+    # a new child object/row is created for that parent,
+    # and I am redirected to the Parent Childs Index page where I can see the new child listed
+    it "has a link to create a new rope route for a gym" do
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+
+      visit "/gyms/#{gym_1.id}/rope_routes"
+
+      expect(page).to have_link("Add Rope Route")
+
+      click_link "Add Rope Route"
+
+      expect(current_path).to eq("/gyms/#{gym_1.id}/rope_routes/new")
+    end
+
+    it "can create a new rope route for a gym" do
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+
+      visit "/gyms/#{gym_1.id}/rope_routes"
+
+      expect(page).to_not have_content("5.10c")
+
+      visit "/gyms/#{gym_1.id}/rope_routes/new"
+
+      fill_in(:grade, with: "5.10c")
+      fill_in(:color, with: "Black")
+      fill_in(:top_rope, with: true)
+      fill_in(:lead, with: true)
+      fill_in(:height, with: 40)
+      click_button("Add Rope Route")
+
+      expect(current_path).to eq("/gyms/#{gym_1.id}/rope_routes")
+      expect(page).to have_content("5.10c")
+    end
+  end
+
+  describe "User Story 16, Parent's Children sorted Aplhabetically by Color" do
+    # User Story 16, Sort Parent's Children in Alphabetical Order by name
+    #
+    # As a visitor
+    # When I visit the Parent's children Index Page
+    # Then I see a link to sort children in alphabetical order
+    # When I click on the link
+    # I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
+    it "sorts the Children alphabetically by Color" do
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      rope_1 = gym_1.rope_routes.create!(grade: '5.9', color: 'Green', top_rope: true, lead: false, height: 33)
+      rope_2 = gym_1.rope_routes.create!(grade: '5.11', color: 'Blue', top_rope: false, lead: true, height: 45)
+
+      visit "/gyms/#{gym_1.id}/rope_routes"
+
+      expect(rope_1.color).to appear_before(rope_2.color)
+      expect(page).to have_link("Sort Rope Routes by Color")
+
+      click_link "Sort Rope Routes by Color"
+
+      expect(rope_2.color).to appear_before(rope_1.color)
+    end
+  end
+
+  describe "User Story 18, Child Update from Child Index page" do
+    # User Story 18, Child Update From Childs Index Page
+    #
+    # As a visitor
+    # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+    # Next to every child, I see a link to edit that child's info
+    # When I click the link
+    # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
+    it "has a link to edit a rope route's information" do
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      rope_1 = gym_1.rope_routes.create!(grade: '5.9', color: 'Green', top_rope: true, lead: false, height: 33)
+      rope_2 = gym_1.rope_routes.create!(grade: '5.11', color: 'Blue', top_rope: false, lead: true, height: 45)
+
+      visit "/gyms/#{gym_1.id}/rope_routes"
+
+      within "#rope_route-#{rope_1.id}" do
+        expect(page).to have_link("Update Rope Route")
+
+        click_link "Update Rope Route"
+
+        expect(current_path).to eq("/rope_routes/#{rope_1.id}/edit")
+      end
+    end
+  end
 end

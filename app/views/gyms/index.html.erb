@@ -1,4 +1,11 @@
 <h1>Gyms</h1>
 <% @gyms.each do |gym| %>
-  <p><strong><%= gym.name %></strong> <%= gym.created_at %></p>
+  <div id="gym-<%= gym.id %>" >
+    <p>
+      <strong>ID: <%= gym.id %>, <%= gym.name %></strong>
+      <%= gym.created_at %>
+      <%= link_to "Update Gym", "/gyms/#{gym.id}/edit" %>
+    </p>
+  </div>
 <% end %>
+<%= link_to "New Gym", "/gyms/new" %>
