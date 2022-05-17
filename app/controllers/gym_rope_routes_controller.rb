@@ -1,7 +1,8 @@
 class GymRopeRoutesController < ApplicationController
   def index
     @gym = Gym.find(params[:id])
-    @rope_routes = @gym.rope_routes
+    # @rope_routes = @gym.rope_routes
+    @rope_routes = @gym.rope_routes.color_order(params[:sort])
   end
 
   def new

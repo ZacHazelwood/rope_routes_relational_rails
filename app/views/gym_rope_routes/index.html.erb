@@ -1,4 +1,5 @@
 <h1>Rope Routes at <%= @gym.name %> in <%= @gym.location %></h1>
+<p><%= link_to "Sort Rope Routes by Color", "/gyms/#{@gym.id}/rope_routes/?sort=Alphabetical" %></p>
   <% @rope_routes.each do |route| %>
     <h3>Grade: <%= route.grade %>, <%= route.color %></h3>
     <p>Route ID: <%= route.id %></p>
