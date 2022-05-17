@@ -38,4 +38,36 @@ RSpec.describe "gyms#index", type: :feature do
       expect(page).to have_content(gym_2.created_at)
     end
   end
+
+  describe "User Story 17, Parent update" do
+    # User Story 17, Parent Update From Parent Index Page
+    #
+    # As a visitor
+    # When I visit the parent index page
+    # Next to every parent, I see a link to edit that parent's info
+    # When I click the link
+    # I should be taken to that parents edit page where I can update its information just like in User Story 4
+    it "has a link to update each Gym's information" do
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      gym_2 = Gym.create!(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
+
+      visit "/gyms"
+
+      within("#gym-#{gym_1.id}") do
+        expect(page).to have_link("Update Gym")
+
+        click_link "Update Gym"
+
+        expect(current_path).to eq("/gyms/#{gym_1.id}/edit")
+      end
+
+      within("#gym-#{gym_2.id}") do
+        expect(page).to have_link("Update Gym")
+
+        click_link "Update Gym"
+
+        expect(current_path).to eq("/gyms/#{gym_2.id}/edit")
+      end  
+    end
+  end
 end
