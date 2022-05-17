@@ -31,7 +31,8 @@ RSpec.describe "New Gym Creation", type: :feature do
 
       fill_in(:name, with: "Movement RiNo")
       fill_in(:location, with: "Denver, CO")
-      fill_in(:has_rope, with: false)
+      # fill_in(:has_rope, with: false)
+      select("false", from: :has_rope)
       fill_in(:square_feet, with: 40000)
 
       click_button("Create Gym")
