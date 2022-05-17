@@ -1,6 +1,7 @@
 class RopeRoutesController < ApplicationController
   def index
-    @rope_routes = RopeRoute.all
+    # @rope_routes = RopeRoute.all
+    @rope_routes = RopeRoute.has_top_rope
   end
 
   def show
@@ -21,5 +22,5 @@ class RopeRoutesController < ApplicationController
   private
     def rope_route_params
       params.permit(:grade, :color, :top_rope, :lead, :height)
-    end  
+    end
 end
