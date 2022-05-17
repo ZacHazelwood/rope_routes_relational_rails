@@ -53,6 +53,16 @@ RSpec.describe "gyms#index", type: :feature do
 
       visit "/gyms"
 
+      within("#gym-#{gym_2.id}") do
+        expect(page).to have_link("Update Gym")
+
+        click_link "Update Gym"
+
+        expect(current_path).to eq("/gyms/#{gym_2.id}/edit")
+      end
+
+      visit "/gyms"
+
       within("#gym-#{gym_1.id}") do
         expect(page).to have_link("Update Gym")
 
@@ -60,14 +70,6 @@ RSpec.describe "gyms#index", type: :feature do
 
         expect(current_path).to eq("/gyms/#{gym_1.id}/edit")
       end
-
-      within("#gym-#{gym_2.id}") do
-        expect(page).to have_link("Update Gym")
-
-        click_link "Update Gym"
-
-        expect(current_path).to eq("/gyms/#{gym_2.id}/edit")
-      end  
     end
   end
 end
