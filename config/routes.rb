@@ -14,5 +14,6 @@ Rails.application.routes.draw do
 
   get '/rope_routes', to: 'rope_routes#index'
   get '/rope_routes/:id', to: 'rope_routes#show'
-
+  patch '/rope_routes/:id', to: 'rope_routes#update'
+  get '/rope_routes/:id/edit', to: 'rope_routes#edit'
 end
