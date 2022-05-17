@@ -40,6 +40,7 @@ RSpec.describe RopeRoute, type: :model do
 
       expect(gym_2.rope_routes.color_order("Generic search")).to eq([rope_1, rope_2, rope_3, rope_4])
       expect(gym_2.rope_routes.color_order("Alphabetical")).to eq([rope_3, rope_2, rope_1, rope_4])
+      expect(gym_2.rope_routes.color_order("Filter", 40)).to eq([rope_3])
     end
   end
 end

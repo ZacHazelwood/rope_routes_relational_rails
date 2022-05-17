@@ -85,16 +85,14 @@ RSpec.describe 'rope_routes#index', type: :feature do
       visit "/rope_routes"
 
       expect(page).to have_content("5.9")
-      expect(page).to have_content("5.11")
 
-      within("#rope_route-#{rope_1.id}" do
+      within("#rope_route-#{rope_1.id}") do
 
         click_link "Delete Rope Route"
       end
 
       expect(current_path).to eq("/rope_routes")
       expect(page).to_not have_content("5.9")
-      expect(page).to_not have_content("5.11")
     end
   end
 end
