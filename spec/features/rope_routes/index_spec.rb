@@ -36,7 +36,6 @@ RSpec.describe 'rope_routes#index', type: :feature do
 
       visit '/rope_routes'
 
-      save_and_open_page
       expect(page).to have_content(rope_1.grade)
       expect(page).to_not have_content(rope_2.grade)
     end

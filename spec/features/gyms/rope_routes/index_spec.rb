@@ -80,7 +80,7 @@ RSpec.describe "Parent-Child index", type: :feature do
     end
   end
 
-  describe "User Story 12, Parent Child Creation" do
+  describe "User Story 13, Parent Child Creation" do
     # User Story 13, Parent Child Creation
     #
     # As a visitor
@@ -123,6 +123,30 @@ RSpec.describe "Parent-Child index", type: :feature do
 
       expect(current_path).to eq("/gyms/#{gym_1.id}/rope_routes")
       expect(page).to have_content("5.10c")
+    end
+  end
+
+  describe "User Story 16, Parent's Children sorted Aplhabetically by Color" do
+    # User Story 16, Sort Parent's Children in Alphabetical Order by name
+    #
+    # As a visitor
+    # When I visit the Parent's children Index Page
+    # Then I see a link to sort children in alphabetical order
+    # When I click on the link
+    # I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
+    it "sorts the Children alphabetically by Color" do
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      rope_1 = gym_1.rope_routes.create!(grade: '5.9', color: 'Green', top_rope: true, lead: false, height: 33)
+      rope_2 = gym_1.rope_routes.create!(grade: '5.11', color: 'Blue', top_rope: false, lead: true, height: 45)
+
+      visit "/gyms/#{gym_1.id}/rope_routes"
+
+      expect(rope_1.color).to appear_before(rope_2.color)
+      expect(page).to have_link("Sort Rope Routes by Color")
+
+      click_link "Sort Rope Routes by Color"
+
+      expect(rope_2.color).to appear_before(rope_1.color)
     end
   end
 end
