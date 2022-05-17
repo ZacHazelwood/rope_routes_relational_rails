@@ -5,10 +5,10 @@
   <%= form.label "Update Color" %><br>
   <%= form.text_field :color %><br>
   <%= form.label "Update Top Rope" %><br>
-  <%= form.text_field :top_rope %><br>
+  <%= form.select :top_rope, [true, false] %><br>
   <%= form.label "Update Lead" %><br>
-  <%= form.text_field :lead %><br>
+  <%= form.select :lead, [true, false] %><br>
   <%= form.label "Update Height" %><br>
   <%= form.text_field :height %><br>
   <%= form.submit "Update Rope Route" %>
-<% end %>  
+<% end %>
