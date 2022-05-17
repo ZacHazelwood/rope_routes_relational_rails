@@ -29,6 +29,16 @@ RSpec.describe RopeRoute, type: :model do
       rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
 
       expect(RopeRoute.has_top_rope).to eq([rope_1, rope_3, rope_4])
-    end  
+    end
+
+    it "sorts Rope Routes Aplhabetically from the color field" do
+      gym_2 = Gym.create!(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
+      rope_1 = gym_2.rope_routes.create!(grade: '5.10a', color: 'White', top_rope: true, lead: true, height: 33)
+      rope_2 = gym_2.rope_routes.create!(grade: '5.9', color: 'Green', top_rope: true, lead: false, height: 33)
+      rope_3 = gym_2.rope_routes.create!(grade: '5.11', color: 'Blue', top_rope: false, lead: true, height: 45)
+      rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
+
+      expect(gym_1.rope_routes.color_order("Generic search")).to eq([rope_1, rope_2, rope_3, rope_4])
+      expect(gym_1.rope_routes.color_order("Aplhabetical")).to eq([rope_3, rope_2, rope_1, rope_4])
   end
 end
