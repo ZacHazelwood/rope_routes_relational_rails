@@ -19,6 +19,11 @@ class RopeRoutesController < ApplicationController
     redirect_to "/rope_routes/#{params[:id]}"
   end
 
+  def destroy
+    RopeRoute.destroy(params[:id])
+    redirect_to "/rope_routes"
+  end
+
   private
     def rope_route_params
       params.permit(:grade, :color, :top_rope, :lead, :height)

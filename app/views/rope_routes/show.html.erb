@@ -7,3 +7,4 @@
 <p>Updated at: <%= @rope_route.updated_at %></p>
 <p>Gym ID: <%= @rope_route.gym_id %></p>
 <%= link_to "Update Rope Route", "/rope_routes/#{@rope_route.id}/edit" %>
+<%= link_to "Delete Rope Route", "/rope_routes/#{@rope_route.id}", method: :delete %>
