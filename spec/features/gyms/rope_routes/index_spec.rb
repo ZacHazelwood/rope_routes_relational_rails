@@ -128,4 +128,34 @@ RSpec.describe "Parent-Child index", type: :feature do
       end
     end
   end
+
+  describe "User Story 21, Display records over a given threshold" do
+    # User Story 21, Display Records Over a Given Threshold
+    #
+    # As a visitor
+    # When I visit the Parent's children Index Page
+    # I see a form that allows me to input a number value
+    # When I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
+    # Then I am brought back to the current index page with only the records that meet that threshold shown.
+    it "can display rope routes that meet a search criteria" do
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      gym_2 = Gym.create!(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
+      rope_1 = gym_1.rope_routes.create!(grade: '5.9', color: 'Green', top_rope: true, lead: false, height: 33)
+      rope_2 = gym_1.rope_routes.create!(grade: '5.11', color: 'Blue', top_rope: false, lead: true, height: 45)
+      rope_3 = gym_2.rope_routes.create!(grade: '5.10a', color: 'White', top_rope: true, lead: true, height: 33)
+      rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
+
+      visit "/gyms/#{gym_1.id}/rope_routes"
+
+      expect(page).to have_content("5.9")
+      expect(page).to have_content("5.11")
+
+      fill_in(:search_number, with: 40)
+      click_button("Submit Search")
+
+      expect(current_path).to eq("/gyms/#{gym_1.id}/rope_routes")
+      expect(page).to_not have_content("5.9")
+      expect(page).to have_content("5.11")
+    end
+  end
 end
