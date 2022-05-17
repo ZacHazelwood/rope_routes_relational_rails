@@ -7,3 +7,4 @@
 <p>Created at: <%= @gym.created_at %></p>
 <p>Updated at: <%= @gym.updated_at %></p>
 <p><%= link_to "Rope Routes at #{@gym.name}", "/gyms/#{@gym.id}/rope_routes" %></p>
+<p><%= link_to "Update Gym", "/gyms/#{@gym.id}/edit" %></p>

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "gym#edit, Update existing Gym" do
-  describe "User Story 11, Parent Update" do
+  describe "User Story 12, Parent Update" do
     # As a visitor
     # When I visit a parent show page
     # Then I see a link to update the parent "Update Parent"
