@@ -4,7 +4,7 @@
   <%= form.label :location %><br>
   <%= form.text_field :location %><br>
   <%= form.label "Has Rope" %><br>
-  <%= form.text_field :has_rope %><br>
+  <%= form.select :has_rope, [true, false] %><br>
   <%= form.label "Square Feet" %><br>
   <%= form.text_field :square_feet %><br>
   <%= form.submit "Create Gym" %>

@@ -11,4 +11,8 @@ class Gym < ApplicationRecord
   def count_routes
     rope_routes.count
   end
+
+  def rope_route_order(sort = nil, filter = nil)
+    rope_routes.color_order(sort, filter)
+  end
 end

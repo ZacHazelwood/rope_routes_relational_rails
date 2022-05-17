@@ -39,8 +39,10 @@ RSpec.describe "rope_routes#edit, rope_routes#edit" do
 
       fill_in(:grade, with: "5.9")
       fill_in(:color, with: "White")
-      fill_in(:top_rope, with: true)
-      fill_in(:lead, with: false)
+      # fill_in(:top_rope, with: true)
+      # fill_in(:lead, with: false)
+      select("true", from: :top_rope)
+      select("false", from: :lead)
       fill_in(:height, with: 33)
       click_button("Update Rope Route")
 

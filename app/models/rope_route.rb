@@ -8,9 +8,11 @@ class RopeRoute < ApplicationRecord
     where(top_rope: true)
   end
 
-  def self.color_order(sort)
+  def self.color_order(sort = nil, filter = nil)
     if sort == "Alphabetical"
       RopeRoute.order(:color)
+    elsif sort == "Filter"
+      RopeRoute.where(["height > ?", filter])
     else
       RopeRoute.all
     end

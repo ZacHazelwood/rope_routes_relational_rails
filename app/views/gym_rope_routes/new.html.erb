@@ -5,9 +5,9 @@
   <%= form.label :color %><br>
   <%= form.text_field :color %><br>
   <%= form.label :top_rope %><br>
-  <%= form.text_field :top_rope %><br>
+  <%= form.select :top_rope, [true, false] %><br>
   <%= form.label :lead %><br>
-  <%= form.text_field :lead %><br>
+  <%= form.select :lead, [true, false] %><br>
   <%= form.label :height %><br>
   <%= form.text_field :height %><br>
   <%= form.submit "Add Rope Route" %>

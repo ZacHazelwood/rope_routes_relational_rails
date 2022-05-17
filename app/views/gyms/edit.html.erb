@@ -6,7 +6,7 @@
   <%= form.label "Update Location:" %><br>
   <%= form.text_field :location %><br>
   <%= form.label "Update Has Rope:" %><br>
-  <%= form.text_field :has_rope %><br>
+  <%= form.select :has_rope, [true, false] %><br>
   <%= form.label "Update Square Feet:" %><br>
   <%= form.text_field :square_feet %><br>
   <%= form.submit "Update Gym" %>

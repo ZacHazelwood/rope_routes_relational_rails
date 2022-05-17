@@ -66,4 +66,47 @@ RSpec.describe 'gyms#show', type: :feature do
       expect(current_path).to eq("/gyms/#{gym_1.id}/rope_routes")
     end
   end
+
+  describe "User Story 19, Parent Delete" do
+    # User Story 19, Parent Delete
+    #
+    # As a visitor
+    # When I visit a parent show page
+    # Then I see a link to delete the parent
+    # When I click the link "Delete Parent"
+    # Then a 'DELETE' request is sent to '/parents/:id',
+    # the parent is deleted, and all child records are deleted
+    # and I am redirected to the parent index page where I no longer see this parent
+    it "can delete a parent" do
+      gym_1 = Gym.create!(name: "Movement Englewood", location: "Englewood, CO", has_rope: true, square_feet: 175000)
+      gym_2 = Gym.create!(name: "Movement Boulder", location: "Boulder, CO", has_rope: true, square_feet: 22000)
+      rope_1 = gym_1.rope_routes.create!(grade: '5.9', color: 'Green', top_rope: true, lead: false, height: 33)
+      rope_2 = gym_1.rope_routes.create!(grade: '5.11', color: 'Blue', top_rope: false, lead: true, height: 45)
+      rope_3 = gym_2.rope_routes.create!(grade: '5.10a', color: 'White', top_rope: true, lead: true, height: 33)
+      rope_4 = gym_2.rope_routes.create!(grade: '5.8', color: 'White', top_rope: true, lead: true, height: 38)
+
+      visit "/rope_routes"
+
+      expect(page).to have_content("5.9")
+      expect(page).to have_content("5.8")
+
+      visit "/gyms"
+
+      expect(page).to have_content("Movement Englewood")
+
+      visit "/gyms/#{gym_1.id}"
+
+      click_link "Delete Gym"
+
+      expect(current_path).to eq("/gyms")
+      expect(page).to_not have_content("Movement Englewood")
+
+      visit "/rope_routes"
+
+      expect(page).to_not have_content("5.9")
+      expect(page).to_not have_content("5.11")
+      expect(page).to have_content("5.10a")
+      expect(page).to have_content("5.8")
+    end
+  end
 end

@@ -29,7 +29,8 @@ RSpec.describe "gym#edit, Update existing Gym" do
 
       fill_in(:name, with: "Movement Englewood")
       fill_in(:location, with: "Englewood, CO")
-      fill_in(:has_rope, with: true)
+      # fill_in(:has_rope, with: true)
+      select("true", from: :has_rope)
       fill_in(:square_feet, with: 175000)
       click_button ("Update Gym")
 
