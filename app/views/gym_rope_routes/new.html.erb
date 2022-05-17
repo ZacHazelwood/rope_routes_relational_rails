@@ -1,0 +1,14 @@
+<%= form_with url: "/gyms/#{@gym.id}/rope_routes", method: :post, local: true do |form| %>
+  <p>Add a Rope Route to <%= @gym.name %></p>
+  <%= form.label :grade %><br>
+  <%= form.text_field :grade %><br>
+  <%= form.label :color %><br>
+  <%= form.text_field :color %><br>
+  <%= form.label :top_rope %><br>
+  <%= form.text_field :top_rope %><br>
+  <%= form.label :lead %><br>
+  <%= form.text_field :lead %><br>
+  <%= form.label :height %><br>
+  <%= form.text_field :height %><br>
+  <%= form.submit "Add Rope Route" %>
+<% end %>

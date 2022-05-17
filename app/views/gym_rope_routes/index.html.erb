@@ -9,3 +9,4 @@
     <p>Updated: <%= route.updated_at %></p>
     <p>Gym ID: <%= route.gym_id %></p>
   <% end %>
+  <%= link_to "Add Rope Route", "/gyms/#{@gym.id}/rope_routes/new" %>
