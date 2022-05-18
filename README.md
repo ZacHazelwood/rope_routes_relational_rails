@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Turing School Module 2, Solo Project: Relational Rails
+======
+By: Zachary Hazelwood
 
-Things you may want to cover:
+> Ruby Version: 2.7.4
 
-* Ruby version
+> Rails: 5.2.6
 
-* System dependencies
+This project is created with the goal of understanding One to Many database associations, as well as utilizing proper CRUD procedures when creating an application. It also includes class and instance methods that apply specific parameters for ActiveRecord and SQL queries.
 
-* Configuration
+![Associative Databases](images/gyms_and_rope_routes_tables.png)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Above is a representation of each table and their associations, created via the app's `schema.rb`.
